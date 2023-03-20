@@ -5,7 +5,7 @@
 
 // add pdf-parse?
 
-import { OpenAI, OpenAIChat } from "langchain/llms";
+import { OpenAI, ChatOpenAI } from "langchain/llms";
 import { PromptTemplate } from "langchain/prompts";
 import { LLMChain } from "langchain/chains";
 import { Document } from "langchain/document";
@@ -28,7 +28,7 @@ export async function getReview(input) {
     const template = "{instructions} {persona} {textInput}";
 
     // variables
-    const instructions = "You are reviewing research papers and abstracts. If you don't know, say you don't know. Do not break out of character unless told. Do not explain yourself. Answer as the following character, in the first person using 'I' instead of 'As a (character)': {persona}"
+    const instructions = "If you don't know, admit you don't know. Do not break out of character and don't explain yourself. Answer as the following character: {persona}"
 
     let persona = input?.persona
 
@@ -36,43 +36,69 @@ export async function getReview(input) {
     // input.persona = 'SCOR'
     // const persona = "Reviewer 2: Harsh critic who always finds something wrong with your paper"
     if(input?.persona.includes('SCOR')) {
-      persona = `Senior PI: Your job is to improve the manuscript's chances to get accepted at the best journal possible. Review the manuscript by filling in the following template, in JSON format:
-
-      Break first person responses. Please format the output in JSON format, as follows: 
+      persona = `Review the manuscript by filling in the following template, in JSON format. Score from 1 (lowest) to 5 (highest):
+      Please format the output in JSON proper JSON formatting. Make sure to end with a "}": 
       {
         "scor": {
           "significance": {
-            "score":"(score from 1 (lowest) to 5)",
-            "explanation":(200 character reasoning)"
+            "score":"(score)",
+            "explanation":(text)"
           },
           "clarity": {
-            "score":"(score from 1 (lowest) to 5)",
-            "explanation":(200 character reasoning)"
+            "score":"(score)",
+            "explanation":(text)"
           },
           "originality": {
-            "score":"(score from 1 (lowest) to 5)",
-            "explanation":(200 character reasoning)"
+            "score":"(score)",
+            "explanation":(text)"
           },
           "rigor": {
-            "score":"(score from 1 (lowest) to 5)",
-            "explanation":(200 character reasoning)"
+            "score":"(score)",
+            "explanation":(text)"
           },
         },
-        "strengths": "(Explain strengths of the manuscript)",
-        "weaknesses": "(Explain areas to improve of the manuscript)",
-        "future": "(Steps to take to get the paper to the next level of journal; 1200 character reason)"
-      }
-      `;
+        "nextlevel": "(Explain areas to improve of the manuscript, and ways to take it to the next level)"
+      }`;
+
+      // too slow
+      // persona = `Senior PI: Your job is to improve the manuscript's chances to get accepted at the best journal possible. Review the manuscript by filling in the following template, in JSON format:
+
+      // Break first person responses. Please format the output in JSON format, as follows: 
+      // {
+      //   "scor": {
+      //     "significance": {
+      //       "score":"(score from 1 (lowest) to 5)",
+      //       "explanation":(200 character reasoning)"
+      //     },
+      //     "clarity": {
+      //       "score":"(score from 1 (lowest) to 5)",
+      //       "explanation":(200 character reasoning)"
+      //     },
+      //     "originality": {
+      //       "score":"(score from 1 (lowest) to 5)",
+      //       "explanation":(200 character reasoning)"
+      //     },
+      //     "rigor": {
+      //       "score":"(score from 1 (lowest) to 5)",
+      //       "explanation":(200 character reasoning)"
+      //     },
+      //   },
+      //   "strengths": "(Explain strengths of the manuscript)",
+      //   "weaknesses": "(Explain areas to improve of the manuscript)",
+      //   "future": "(Steps to take to get the paper to the next level of journal; 1200 character reason)"
+      // }
+      // `;
 
     }
     const text = input?.text;
 
     // const model = new OpenAIChat({ openAIApiKey: process.env.OPENAI_API_KEY, temperature: 0.9 });
+
     const model = new OpenAI({
       modelName: "gpt-3.5-turbo",
       // modelName: "gpt-4",
       openAIApiKey: process.env.OPENAI_API_KEY,
-      temperature: 0.9
+      temperature: 0.7
     });
 
     const prompt = new PromptTemplate({
@@ -108,23 +134,26 @@ export async function getReview(input) {
 
 
 
-    let res = { text: 'Not available!!'}
+    let res = { text: 'LLM Bypassed for testing'}
     const chain = new LLMChain({ llm: model, prompt: prompt });
 
     // console.log('Calling reviewer:', persona)
-    // res = await chain.call({
-    //   instructions,
-    //   persona,
-    //   journal: input?.journal || "Nature",
-    //   textInput: text
-    // });
-    console.log('Output:', res?.text);
+    console.log('>>>> Getting answer from OpenAI...')
+    console.time();
+    res = await chain.call({
+      instructions,
+      persona,
+      textInput: text
+    });
+    console.timeEnd();
+    console.log('---------->>>>>\n\nOutput:', res?.text,'\n\n<<<------------');
 
     // only true for json responses
     try {
       return JSON.parse(res?.text);
     } catch(e) {
       // return the text if not json
+      console.log('!!!! failed JSON parsing ------<<<<')
       return res?.text || 'Not available'
     }
   } catch (err) {

@@ -1,6 +1,7 @@
-import adapter_auto from '@sveltejs/adapter-auto'
+import adapter from '@sveltejs/adapter-auto'
 // import adapter_static from '@sveltejs/adapter-static'
 import adapter_vercel from '@sveltejs/adapter-vercel'
+import adapter_node from '@sveltejs/adapter-node'
 import preprocess from 'svelte-preprocess'
 
 // import { mdsvex } from 'mdsvex'
@@ -29,7 +30,8 @@ const config = {
   // vercel; regular deployment
   kit: {
     // adapter: adapter_auto(),
-    adapter: adapter_vercel(),
+    // adapter: adapter_vercel(),
+    adapter: adapter_node(),
 
     // used for static, to generate a bunch of pages
     // adapter: adapter_static(),

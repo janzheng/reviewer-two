@@ -15,6 +15,7 @@
     use:enhance={({ form, data, action, cancel }) => {
       isLoading = true
       return async ({ result, update }) => {
+        console.log('---> result', result)
         _resultsArr.push(result.data)
         _resultsArr = _resultsArr // reflex update
         isLoading = false
@@ -74,27 +75,28 @@
             {#if _results?.persona.includes('SCOR')}
               <div class="SCORcard | pl-4">
                 <div class="mb-4 | ">
-                  <div class="font-bold">Significance: {_results.output.scor.significance.score}</div>
-                  <div>{_results.output.scor.significance.explanation}</div>
+                  <div class="font-bold">Significance: {_results.output?.scor?.significance?.score}</div>
+                  <div>{_results.output?.scor?.significance?.explanation}</div>
                 </div>
                 <div class="mb-4 | ">
-                  <div class="font-bold">Clarity: {_results.output.scor.clarity.score}</div>
-                  <div>{_results.output.scor.clarity.explanation}</div>
+                  <div class="font-bold">Clarity: {_results.output?.scor?.clarity?.score}</div>
+                  <div>{_results.output?.scor?.clarity?.explanation}</div>
                 </div>
                 <div class="mb-4 | ">
-                  <div class="font-bold">Originality: {_results.output.scor.originality.score}</div>
-                  <div>{_results.output.scor.originality.explanation}</div>
+                  <div class="font-bold">Originality: {_results.output?.scor?.originality?.score}</div>
+                  <div>{_results.output?.scor?.originality?.explanation}</div>
                 </div>
                 <div class="mb-8 | ">
-                  <div class="font-bold">Rigor: {_results.output.scor.rigor.score}</div>
-                  <div>{_results.output.scor.rigor.explanation}</div>
+                  <div class="font-bold">Rigor: {_results.output?.scor?.rigor?.score}</div>
+                  <div>{_results.output?.scor?.rigor?.explanation}</div>
                 </div>
 
                 <!-- next section -->
                 <div class="mb-2 | ">
-                  <div><span class="font-bold">Strengths:</span> {_results.output.strengths}</div>
-                  <div><span class="font-bold">Weaknesses:</span> {_results.output.strengths}</div>
-                  <div><span class="font-bold">Future Direction:</span> {_results.output.future}</div>
+                  <!-- <div><span class="font-bold">Strengths:</span> {_results.output.strengths}</div>
+                  <div><span class="font-bold">Weaknesses:</span> {_results.output.strengths}</div> -->
+                  <!-- <div><span class="font-bold">Future Direction:</span> {_results.output.future}</div> -->
+                  <div><span class="font-bold">Future Direction:</span> {_results.output?.nextlevel}</div>
                 </div>
               </div>
             {:else}

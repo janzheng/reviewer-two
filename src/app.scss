@@ -1,0 +1,164 @@
+
+
+/* this file overrides default Tailwind styling ??
+
+  - this file is watched and converted by PostCSS
+
+  Tailwind tends to override some things like link styling:
+  https://stackoverflow.com/questions/63883580/tailwind-css-how-to-style-a-href-links-in-react 
+
+*/
+
+// @import '@fontsource/inter';
+@import '@fontsource/inter/300';
+@import '@fontsource/inter/400';
+@import '@fontsource/inter/700';
+/* @import '@fontsource/fira-mono'; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+// 
+//    MAIN PROJECT THEMES / STYLES
+// 
+//    base :root styles are in /baseline
+@import './lib/themes/baseline';
+
+// social fonts
+// @import "$plasmid/themes/templates/social";
+// @import "./lib/themes/social";
+// @import "./lib/themes/prism";
+
+// include coeur templates if needed; treated as a separate theme
+// @import './lib/themes/coeur';
+// @import './lib/themes/elements';
+
+// Additional project styling
+@import "$plasmid/themes/tw";
+
+
+
+/* 
+
+  Base themes
+
+*/
+
+
+.notion {
+  font-family: Inter, sans-serif !important;
+}
+
+.headline {
+  @apply font-display;
+  text-rendering: geometricprecision;
+}
+
+// for narrative pages / longform
+.Narrative {
+  img {
+    @apply rounded-md;
+  }
+}
+
+h1 {
+  @apply text-3xl leading-tight lg:text-3xl lg:leading-tight pb-8 font-semibold
+}
+  h1.article-title  {
+    @apply text-6xl md:text-5xl font-display leading-tight pb-8
+  }
+h2 {
+  @apply text-2xl md:text-2xl pb-6;
+
+  &.--extra {
+    @apply text-4xl pb-2 tracking-tight;
+  }
+
+  &~h3 {
+    padding-top: 0;
+  }
+}
+  *>h1,*>h2,*>h3,*>h5,*>h6 { 
+    @apply pt-12
+  }
+h3 {
+  @apply text-xl  pb-6
+}
+h4 {
+  @apply text-lg pb-4
+}
+h5 {
+  @apply font-bold pb-4;
+}
+h6 {
+  @apply text-xs tracking-wide uppercase pb-2;
+}
+
+p {
+  @apply pb-4;
+}
+
+.text-light {
+  @apply text-slate-600;
+}
+
+a, ._link {
+  @apply no-underline text-blue-500 cursor-pointer;
+}
+  a:hover {
+    @apply underline text-blue-800;
+  }
+
+  ._link-reset {
+    @apply no-underline hover:no-underline text-inherit;
+    text-decoration: none !important;
+    color: var(--color-base);
+  }
+
+
+// preloaded global tw styles for airtable/notion classes
+.tw-border-blue-600 {
+  @apply border-blue-600;
+}
+
+.code {
+  position: relative;
+}
+
+
+code {
+  display: inline-block;
+  padding: 0.4em;
+  font-size: 14px;
+  line-height: 14px * 1.4;
+  font-family: "fira-mono", monospace;
+  background: #333;
+  color: #fdce93;
+}
+
+
+
+
+.snug, .psnug, .pfix {
+  // removes padding of last paragraph of a rendered markdown block
+  // to create snug-ness
+  p:last-child {
+    padding-bottom: 0;
+  }
+  &--i {
+    padding-bottom: 0 !important;
+  }
+}
+.inlinep, .pinline {
+  p { display: inline; }
+}
+
+
+
+
+
+
+
+

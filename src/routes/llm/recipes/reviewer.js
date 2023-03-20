@@ -65,7 +65,7 @@ export async function getReview(input) {
       `;
 
     }
-    const text = input?.text || `Determination of phage susceptibility as a clinical diagnostic tool: A routine perspective Valéry Daubie1,2, Houssein Chalhoub1,3, Bob Blasdel4, Hafid Dahma2, Maya Merabishvili5, Tea Glonti5, Nathalie De Vos6, Johan Quintens4, Jean-Paul Pirnay5, Marie Hallin3† and Olivier Vandenberg1,3,7*† 1Innovation and Business Development Unit, LHUB-ULB, Université Libre de Bruxelles, Brussels, Belgium 2Department of Microbiology, LHUB-ULB, Université Libre de Bruxelles, Brussels, Belgium 3Centre for Environmental Health and Occupational Health, School of Public Health, Université Libre de Bruxelles (ULB), Brussels, Belgium 4R&D department, Vesale Bioscience, Noville-sur-Mehaigne, Belgium 5Laboratory for Molecular and Cellular Technology, Queen Astrid Military Hospital, Brussels, Belgium 6Department of Clinical Chemistry, LHUB-ULB, Université Libre de Bruxelles, Brussels, Belgium 7Division of Infection and Immunity, Faculty of Medical Sciences, University College London, London, United Kingdom As the global burden of disease caused by multidrug resistant bacteria is a major source of concern, credible clinical alternatives to antibiotic therapy, such as personalized phage therapy, are actively explored. Although phage therapy has been used for more than a century, the issue of an easy to implement diagnostic tool for determining phage susceptibility that meets current routine clinical needs is still open. In this Review, we summarize the existing methods used for determining phage activity on bacteria, including the three reference methods: the spot test, the double agar overlay plaque assay, and the Appelmans method. The first two methods rely on the principle of challenging the overnight growth of a lawn of bacteria in an agar matrix to a known relative phage to bacteria concentration and represent good screening tools to determine if the tested phage can be used for a “passive” and or “active” treatment. Beside these methods, several techniques, based on “real-time” growth kinetics assays (GKA) have been developed or are under development. They all monitor the growth of clinical isolates in the presence of phages, but use various detection methods, from classical optical density to more sophisticated techniques such as computer-assisted imagery, flow-cytometry, quantitative real-time polymerase chain reaction (qPCR) or metabolic indicators. Practical considerations as well as information provided about phage activity are reviewed for each technique. Finally, we also discuss the analytical and interpretative requirements for the implementation of a phage susceptibility testing tool in routine clinical microbiology.`;
+    const text = input?.text;
 
     // const model = new OpenAIChat({ openAIApiKey: process.env.OPENAI_API_KEY, temperature: 0.9 });
     const model = new OpenAI({
@@ -108,16 +108,16 @@ export async function getReview(input) {
 
 
 
-    let res
+    let res = { text: 'Not available!!'}
     const chain = new LLMChain({ llm: model, prompt: prompt });
 
     // console.log('Calling reviewer:', persona)
-    res = await chain.call({
-      instructions,
-      persona,
-      journal: input?.journal || "Nature",
-      textInput: text
-    });
+    // res = await chain.call({
+    //   instructions,
+    //   persona,
+    //   journal: input?.journal || "Nature",
+    //   textInput: text
+    // });
     console.log('Output:', res?.text);
 
     // only true for json responses

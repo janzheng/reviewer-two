@@ -64,14 +64,14 @@
     <div class="results mt-8 | md:grid md:grid-cols-2 md:gap-2">
       {#each _resultsArr.reverse() as _results}
         <div class="Card-light mt-2">
-          <div class="mb-1">{_results.persona}</div>
+          <div class="mb-1">{_results?.persona}</div>
           <details class="mt-2" >
             <summary>Input: {_results.text.slice(0, 60)}...</summary>
             <p class="pl-4 pt-2">{_results.text}</p>
           </details>
           <details class="mt-2" open>
             <summary>Review:</summary>
-            {#if _results.persona.includes('SCOR')}
+            {#if _results?.persona.includes('SCOR')}
               <div class="SCORcard | pl-4">
                 <div class="mb-4 | ">
                   <div class="font-bold">Significance: {_results.output.scor.significance.score}</div>

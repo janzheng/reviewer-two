@@ -14,7 +14,7 @@ export const siteIcon = "/icon.png"
 export const siteCard = "https://phage.directory/share_img.png"
 export const siteCardTitle = "(Auto) Reviewer #2"
 
-export const siteTitle = "(Auto) Reviewer #2)"
+export const siteTitle = "Reviewer #2"
 export const siteDescription = "Now you can get Reviewer #2, but automatically!"
 export const siteURL = "api.phage.directory" // no protocol
 export const siteLink = "https://" + siteURL // 'https://github.com/josh-collinsworth/sveltekit-blog-starter'

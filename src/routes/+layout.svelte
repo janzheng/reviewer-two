@@ -2,9 +2,9 @@
 
 <script>
   import { fade } from 'svelte/transition'
-	import { preloadData } from '$app/navigation'
+	// import { preloadData } from '$app/navigation'
 	import { onMount } from 'svelte'
-	import { currentPage, isMenuOpen, user } from '$lib/store'
+	// import { currentPage, isMenuOpen, user } from '$lib/store'
 	import { navItems } from '$lib/config'
   import { page } from '$app/stores'
 
@@ -15,23 +15,23 @@
 
   export let data
 
-	const transitionIn = { delay: 150, duration: 150 }
-	const transitionOut = { duration: 100 }
+	const transitionIn = { delay: 150, duration: 150 };
+	const transitionOut = { duration: 100 };
 
 	
-	$: currentPage.set(data.path)
-	onMount(() => {
-    navItems?.forEach(item => preloadData(item.route))
-	})
+	// $: currentPage.set(data.path)
+	// onMount(() => {
+  //   navItems?.forEach(item => preloadData(item.route))
+	// })
   
-  $user = $page.data?.user || null
+  // $user = $page.data?.user || null;
   // $: console.log('[+layout.svelte] $page.data:', $page.data, $user)
 </script>
 
 <Head />
 
 
-<div class="layout" class:open={$isMenuOpen}>
+<div class="layout" >
 
   {#if !data.path.includes('sidekit')}
     <!-- <Header /> -->

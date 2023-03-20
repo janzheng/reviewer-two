@@ -2,16 +2,15 @@ import adapter_auto from '@sveltejs/adapter-auto'
 // import adapter_static from '@sveltejs/adapter-static'
 import adapter_vercel from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
-import adapter_ipfs from 'sveltejs-adapter-ipfs'
 
-import { mdsvex } from 'mdsvex'
-import remarkAttr from 'remark-attr'
-import rehypeSlug from 'rehype-slug'
+// import { mdsvex } from 'mdsvex'
+// import remarkAttr from 'remark-attr'
+// import rehypeSlug from 'rehype-slug'
 // import autoprefixer from 'autoprefixer'
 
 // import { plugin as markdown, Mode } from "vite-plugin-markdown";
 // import preprocessMarkdoc from 'svelte-markdoc'
-import markdocConfig from './markdoc.config.js'
+// import markdocConfig from './markdoc.config.js'
 
 
 import { config as dotenvconf } from "dotenv"

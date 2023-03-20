@@ -12,10 +12,10 @@ import { writable, get } from 'svelte/store';
 
 export const siteIcon = "/icon.png"
 export const siteCard = "https://phage.directory/share_img.png"
-export const siteCardTitle = "Phage Directory API"
+export const siteCardTitle = "(Auto) Reviewer #2"
 
-export const siteTitle = "Phage Directory API"
-export const siteDescription = "Phage Directory API"
+export const siteTitle = "(Auto) Reviewer #2)"
+export const siteDescription = "Now you can get Reviewer #2, but automatically!"
 export const siteURL = "api.phage.directory" // no protocol
 export const siteLink = "https://" + siteURL // 'https://github.com/josh-collinsworth/sveltekit-blog-starter'
 export const siteAuthor = 'Jan Zheng'

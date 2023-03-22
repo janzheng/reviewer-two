@@ -1,13 +1,15 @@
 
-import { output } from './llm/recipes/reviewertwo.js'
-import { getReview } from './llm/recipes/reviewer.js'
+// import { output } from './llm/recipes/reviewertwo.js'
+// import { getReview } from './reviewer/reviewer.js'
+import { getReview } from "$plasmid/modules/llm/recipes/reviewer.js"
 import { error } from '@sveltejs/kit';
 
-// export async function load({ params, url }) {
-//   let { link, pageId } = Object.fromEntries(url.searchParams)
-//   return { link, pageId };
-//   throw error(404, 'Not found');
-// }
+import { head, seo } from '$lib/config.js'
+
+export async function load({ params, url }) {
+  return { head, seo };
+  throw error(404, 'Not found');
+}
 
 
 export const actions = {
@@ -37,6 +39,7 @@ export const actions = {
         output: _output,
         persona, 
         text,
+        
       }
     } catch (err) {
       // throw errorjson(500, err)

@@ -10,14 +10,14 @@ import { writable, get } from 'svelte/store';
  * PLEASE BE SURE TO UPDATE THEM ALL! Thank you!
  **/
 
-export const siteIcon = "/icon.png"
-export const siteCard = "https://phage.directory/share_img.png"
+export const siteIcon = "/ReviewerEyes.png"
 export const siteCardTitle = "(Auto) Reviewer #2"
 
 export const siteTitle = "Reviewer #2"
-export const siteDescription = "Now you can get Reviewer #2, but automatically!"
-export const siteURL = "api.phage.directory" // no protocol
+export const siteDescription = "For those times you miss having Reviewer #2 in your life"
+export const siteURL = "reviewer-two.fly.dev/" // no protocol
 export const siteLink = "https://" + siteURL // 'https://github.com/josh-collinsworth/sveltekit-blog-starter'
+export const siteCard = "https://reviewer-two.fly.dev/rev2_share_img.jpg"
 export const siteAuthor = 'Jan Zheng'
 export const siteTwitter = '@yawnxyz'
 
@@ -114,6 +114,7 @@ export const seo = {
     description: head.description,
     image: head.image.url,
     imageAlt: head.image.alt,
+    card: 'summary_large_image'
   }
 };
 

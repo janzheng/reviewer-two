@@ -2923,7 +2923,7 @@ pify@^2.3.0:
 
 "plasmid@git+https://github.com/janzheng/plasmid.git":
   version "0.0.5"
-  resolved "git+https://github.com/janzheng/plasmid.git#677eeff4f447a9e22edc6f82a5f864c6e5d46a9d"
+  resolved "git+https://github.com/janzheng/plasmid.git#8b15bb359fab250bbf4310da3ea4cca7b8d1ec37"
   dependencies:
     "@polka/send" "^0.4.0"
     "@polka/send-type" "^0.5.2"

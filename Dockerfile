@@ -17,8 +17,10 @@ COPY tailwind.config.cjs .
 COPY svelte.config.js .
 COPY vite.config.js .
 
+
 # all folders needed for the build
 COPY src src/
+COPY static static/
 
 RUN yarn install
 RUN yarn build

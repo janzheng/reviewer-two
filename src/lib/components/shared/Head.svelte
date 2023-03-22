@@ -1,15 +1,18 @@
 
 <script>
+  import { page } from '$app/stores';
     import SvelteSeo from 'svelte-seo'
-    import { head, seo } from '$lib/config.js'
+    // import { head, seo } from '$lib/config.js'
 
     export const title = ''
     export const description = ''
 
     export const ogUrl = ''
     // export let article = null
-    export const twitter = {}
+    export const twitter = {};
 
+    let {head, seo} = $page.data;
+  
 </script>
 
 <SvelteSeo
@@ -27,6 +30,8 @@
 />
 
 <svelte:head>
+  <meta name="twitter:image" content="https://reviewer-two.fly.dev/rev2_share_img.jpg">
+  <meta property="og:image" content="https://reviewer-two.fly.dev/rev2_share_img.jpg">
 	{#if head }
 		{#if head.meta}
 			{#each head.meta as meta}
